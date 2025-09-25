@@ -1,0 +1,352 @@
+:root {
+    --primary-color: #007aff;
+    --primary-light: #e6f0ff;
+    --text-color: #1c1c1e;
+    --secondary-text: #6c6c70;
+    --border-color: #e0e0e0;
+    --card-bg: #f5f5f7;
+    --bg-color: #f0f2f5;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --success-color: #34c759;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    width: 90%;
+    max-width: 1200px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 2.5em;
+    letter-spacing: -0.5px;
+}
+
+header p {
+    color: var(--secondary-text);
+    margin-top: -10px;
+    font-size: 1.1em;
+}
+
+.upload-area {
+    margin: 30px 0;
+}
+
+#image-upload {
+    display: none;
+}
+
+.upload-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 122, 255, 0.2);
+}
+
+.upload-button:hover {
+    background-color: #006aff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 102, 255, 0.25);
+}
+
+.upload-button svg {
+    margin-right: 10px;
+}
+
+.result-area {
+    margin-top: 40px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.select-all-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1em;
+    color: var(--text-color);
+}
+
+.select-all-container input {
+    margin-right: 8px;
+    transform: scale(1.1);
+    accent-color: var(--primary-color);
+}
+
+.action-button {
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.2s;
+    background-color: var(--success-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(52, 199, 89, 0.2);
+}
+
+.action-button:hover {
+    background-color: #2da44e;
+    box-shadow: 0 4px 8px rgba(52, 199, 89, 0.3);
+}
+
+.action-button svg {
+    margin-right: 8px;
+}
+
+#download-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    /* Hiển thị 4 cột */
+}
+
+@media (max-width: 1024px) {
+    #download-list {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 cột trên tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    #download-list {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 cột trên di động */
+    }
+}
+
+@media (max-width: 480px) {
+    #download-list {
+        grid-template-columns: 1fr;
+        /* 1 cột trên di động nhỏ */
+    }
+}
+
+.download-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    transition: box-shadow 0.3s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.download-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+}
+
+.image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.image-dimensions {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 0.75em;
+    padding: 4px 8px;
+    border-radius: 6px;
+    backdrop-filter: blur(5px);
+}
+
+.status-check {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 10;
+}
+
+.checkbox-container input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkmark {
+    height: 24px;
+    width: 24px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox-container input:checked~.checkmark {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.checkmark:after {
+    content: "✓";
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    display: none;
+}
+
+.checkbox-container input:checked~.checkmark:after {
+    display: block;
+}
+
+.file-details {
+    margin-top: 10px;
+    padding: 0 5px;
+}
+
+.file-name {
+    font-weight: 500;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1em;
+}
+
+.file-info-row {
+    display: flex;
+    flex-direction: row;
+    /* Đặt các dòng lên nhau */
+    align-items: flex-start;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+.file-info-row span {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.file-size-png,
+.file-size-jpeg {
+    font-weight: bold;
+}
+
+.file-size-png {
+    color: var(--secondary-text);
+}
+
+.file-size-jpeg {
+    color: var(--text-color);
+}
+
+.actions-item {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.download-link-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.download-link-btn:hover {
+    background-color: #006aff;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    border-radius: 20px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.spinner {
+    border: 4px solid var(--primary-light);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

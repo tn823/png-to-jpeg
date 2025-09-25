@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển Đổi PNG sang JPEG</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Chuyển Đổi PNG sang JPEG</h1>
+            <p>Giảm dung lượng ảnh của bạn một cách nhanh chóng và dễ dàng.</p>
+        </header>
+
+        <div class="upload-area">
+            <input type="file" id="image-upload" accept="image/png" multiple>
+            <label for="image-upload" class="upload-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-upload">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Chọn ảnh PNG</span>
+            </label>
+        </div>
+
+        <div class="result-area hidden">
+            <div class="actions">
+                <div class="select-all-container">
+                    <input type="checkbox" id="select-all-checkbox" checked>
+                    <label for="select-all-checkbox">Chọn tất cả</label>
+                </div>
+                <button id="download-all-btn" class="action-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    <span>Tải ảnh đã chọn</span>
+                </button>
+            </div>
+            <ul id="download-list"></ul>
+        </div>
+
+        <div id="loading-overlay" class="loading-overlay hidden">
+            <div class="spinner"></div>
+            <p>Đang chuyển đổi ảnh, vui lòng chờ...</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
